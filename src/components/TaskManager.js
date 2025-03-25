@@ -559,7 +559,7 @@ const TaskManager = () => {
   };
 
   return (
-    <div className="min-h-screen bg-app-base text-gray-100 flex">
+    <div className="min-h-screen pt-8 bg-app-base text-gray-100 flex">
       <NavBar activeTab={activeTab} setActiveTab={setActiveTab} />
       <main className="flex-1 ml-16 sm:ml-20 p-4 sm:p-6">
         <div className="max-w-4xl mx-auto">

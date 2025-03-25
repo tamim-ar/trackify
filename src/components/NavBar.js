@@ -13,7 +13,7 @@ const NavBar = ({ activeTab, setActiveTab }) => {
   ];
 
   return (
-    <nav className="fixed left-0 top-0 h-screen w-16 sm:w-20 flex flex-col justify-center bg-app-dark border-r border-app-light">
+    <nav className="fixed left-0 top-8 h-[calc(100vh-2rem)] w-16 sm:w-20 flex flex-col justify-center bg-app-dark border-r border-app-light">
       <div className="flex flex-col items-center gap-6">
         {tabs.map(tab => {
           const Icon = tab.icon;

@@ -4,16 +4,19 @@
   "description": "Task tracking desktop application",
   "main": "main.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development concurrently \"npm run dev-server\" \"npm run electron\"",
+    "start": "kill-port 3000 && cross-env NODE_ENV=development concurrently \"npm run dev-server\" \"npm run electron-dev\"",
+    "electron-dev": "wait-on tcp:3000 && cross-env NODE_ENV=development electron .",
     "electron": "electron .",
-    "dev-server": "webpack serve --mode development",
+    "dev-server": "webpack serve --mode development --open",
     "build": "webpack --mode production && electron-builder",
     "dev": "webpack --mode development --watch"
   },
   "dependencies": {
     "@babel/runtime": "^7.22.6",
+    "@heroicons/react": "^2.0.18",
     "autoprefixer": "^10.4.14",
     "chart.js": "^3.9.1",
+    "clsx": "^2.0.0",
     "electron-store": "^8.1.0",
     "path-browserify": "^1.0.1",
     "postcss": "^8.4.27",
@@ -22,9 +25,7 @@
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
     "tailwind-scrollbar": "^3.1.0",
-    "tailwindcss": "^3.3.3",
-    "@heroicons/react": "^2.0.18",
-    "clsx": "^2.0.0"
+    "tailwindcss": "^3.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
@@ -36,8 +37,13 @@
     "css-loader": "^6.8.1",
     "electron": "^25.3.1",
     "electron-builder": "^24.6.3",
+    "electron-debug": "^4.1.0",
+    "electron-devtools-installer": "^4.0.0",
+    "html-webpack-plugin": "^5.5.3",
+    "kill-port": "^2.0.1",
     "postcss-loader": "^7.3.3",
     "style-loader": "^3.3.3",
+    "wait-on": "^8.0.3",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"

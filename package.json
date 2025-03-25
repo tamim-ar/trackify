@@ -1,0 +1,52 @@
+{
+  "name": "Trackify",
+  "version": "1.0.0",
+  "description": "Task tracking desktop application",
+  "main": "main.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development concurrently \"npm run dev-server\" \"npm run electron\"",
+    "electron": "electron .",
+    "dev-server": "webpack serve --mode development",
+    "build": "webpack --mode production && electron-builder",
+    "dev": "webpack --mode development --watch"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.22.6",
+    "autoprefixer": "^10.4.14",
+    "chart.js": "^3.9.1",
+    "electron-store": "^8.1.0",
+    "path-browserify": "^1.0.1",
+    "postcss": "^8.4.27",
+    "react": "^18.2.0",
+    "react-calendar": "^4.3.0",
+    "react-chartjs-2": "^4.3.1",
+    "react-dom": "^18.2.0",
+    "tailwind-scrollbar": "^3.1.0",
+    "tailwindcss": "^3.3.3",
+    "@heroicons/react": "^2.0.18",
+    "clsx": "^2.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "@babel/preset-react": "^7.22.5",
+    "babel-loader": "^9.1.3",
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.8.1",
+    "electron": "^25.3.1",
+    "electron-builder": "^24.6.3",
+    "postcss-loader": "^7.3.3",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "build": {
+    "appId": "com.trackify",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    }
+  }
+}

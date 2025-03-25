@@ -1,0 +1,673 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-xl font-medium transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-primary/90 text-white hover:translate-y-[-1px];
+  }
+
+  .btn-danger {
+    @apply bg-gradient-to-r from-danger to-danger/90 text-white hover:translate-y-[-1px];
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-6;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all;
+  }
+}
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f8f9fa;
+  color: #212529;
+}
+
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  background: #f0f0f0;
+}
+
+.nav-item.active {
+  background: #007bff;
+  color: white;
+}
+
+.nav-icon {
+  font-size: 1.2em;
+}
+
+.content-area {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.task-manager {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  gap: 30px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.task-list {
+  @apply space-y-3 max-h-[60vh] overflow-y-auto;
+}
+
+.task-item {
+  @apply flex items-center justify-between p-2 sm:p-3 rounded-lg mb-2 transition-colors text-sm;
+  @apply bg-app-light hover:bg-app-hover text-gray-100;
+}
+
+.statistics {
+  grid-column: 1 / -1;
+  padding: 20px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.calendar-only {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.calendar-wrapper {
+  @apply max-w-sm mx-auto bg-white rounded-lg shadow-sm p-2 sm:p-3;
+}
+
+.react-calendar {
+  width: 400px;
+  max-width: 100%;
+  border: none;
+  @apply bg-[#2B2D31] text-gray-200 border-0 rounded-xl shadow-md;
+}
+
+.task-section {
+  @apply rounded-lg shadow-sm p-3 sm:p-4 max-w-4xl mx-auto bg-app-base;
+}
+
+.task-input, .task-description-input, .time-range-select {
+  @apply bg-app-dark text-gray-200 border-0 text-sm;
+  @apply rounded-lg px-3 py-2 focus:ring-1 focus:ring-primary/50;
+}
+
+.task-toggle {
+  @apply bg-accent-blue text-white hover:bg-primary;
+}
+
+.task-toggle.active {
+  @apply bg-red-500;
+}
+
+.calendar-section {
+  @apply rounded-lg shadow-sm p-3 sm:p-4 max-w-4xl mx-auto bg-app-base;
+}
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.time-display {
+  @apply font-mono text-sm text-gray-400;
+}
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  max-width: 800px;
+}
+
+.chart-section {
+  @apply rounded-lg p-4 max-w-6xl mx-auto bg-app-base;
+}
+
+.daily-details {
+  @apply bg-app-base rounded-xl shadow-md mt-6 p-6 text-gray-100;
+}
+
+.daily-details h2 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.daily-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.daily-task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.daily-duration {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.no-tasks {
+  color: #666;
+  text-align: center;
+  padding: 20px;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.task-description-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-height: 80px;
+  resize: vertical;
+  @apply bg-[#1E1F22] text-gray-200 border-0 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/50;
+  @apply min-h-[60px];
+}
+
+.task-actions {
+  @apply flex gap-1 sm:gap-2 items-center;
+}
+
+.task-edit {
+  @apply bg-accent-indigo text-white hover:bg-indigo-500;
+}
+
+.task-delete {
+  @apply bg-red-500 text-white hover:bg-red-600;
+}
+
+.task-edit:disabled,
+.task-delete:disabled,
+.task-toggle:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.task-title {
+  font-weight: bold;
+}
+
+.task-description {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 4px;
+}
+
+.cancel {
+  background: #6c757d;
+}
+
+.cancel:hover {
+  background: #5a6268;
+}
+
+.charts-container {
+  @apply flex justify-center items-center;
+}
+
+.pie-chart {
+  @apply w-full max-w-xl mx-auto p-4 rounded-xl;
+  @apply max-w-md mx-auto;
+}
+
+.line-chart {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.time-range-selector {
+  margin-bottom: 20px;
+}
+
+.time-range-select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  @apply bg-[#1E1F22] text-gray-200 border-0 rounded-lg px-4 py-2 focus:ring-2 focus:ring-primary/50;
+}
+
+.task-time-details {
+  margin-top: 8px;
+  font-size: 0.85em;
+  color: #666;
+}
+
+.log-entry {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px dashed #eee;
+}
+
+.charts-container h3 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.daily-summary {
+  @apply flex flex-col gap-4 p-4 bg-gray-50 rounded-lg;
+}
+
+.summary-item {
+  @apply flex justify-between items-center;
+}
+
+.summary-label {
+  @apply text-gray-600 font-medium;
+}
+
+.summary-value {
+  @apply text-primary text-lg font-semibold;
+}
+
+.summary-total {
+  @apply mb-6 p-4 bg-primary/5 rounded-lg;
+}
+
+.task-stats-list {
+  @apply space-y-4 mt-4;
+}
+
+.task-stat-item {
+  @apply p-4 bg-white rounded-lg shadow-sm;
+}
+
+.task-stat-header {
+  @apply flex justify-between items-center mb-3;
+}
+
+.task-stat-name {
+  @apply font-medium text-gray-900;
+}
+
+.task-stat-attempts {
+  @apply text-sm text-primary font-medium;
+}
+
+.task-stat-times {
+  @apply grid grid-cols-3 gap-2;
+}
+
+.time-unit {
+  @apply flex flex-col items-center p-2 bg-gray-50 rounded;
+}
+
+.time-value {
+  @apply text-lg font-bold text-gray-900;
+}
+
+.time-label {
+  @apply text-xs text-gray-500 mt-1;
+}
+
+.task-search-input {
+  @apply w-full bg-app-dark text-gray-200 border-0 rounded-lg px-4 py-2.5 pr-10;
+  @apply focus:ring-2 focus:ring-primary/50 placeholder-gray-500;
+}
+
+.create-task-btn {
+  @apply px-4 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg;
+  @apply flex items-center gap-2 font-medium transition-colors;
+}
+
+.task-modal {
+  @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4;
+}
+
+.task-form {
+  @apply bg-app-base p-6 rounded-xl shadow-lg w-full max-w-lg;
+  @apply flex flex-col gap-4;
+}
+
+.task-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.task-card {
+  @apply bg-app-light/50 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-all;
+  @apply border border-app-border/50;
+}
+
+.task-card-header {
+  @apply flex justify-between items-start gap-4;
+}
+
+.task-card .task-title {
+  @apply text-lg font-medium text-white;
+}
+
+.task-card .task-time {
+  @apply text-sm font-mono text-gray-400;
+}
+
+.task-card .task-description {
+  @apply text-sm text-gray-300 line-clamp-2;
+}
+
+.task-card-actions {
+  @apply flex justify-between items-center mt-auto pt-2;
+}
+
+.submit-btn {
+  @apply bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg;
+  @apply transition-colors font-medium;
+}
+
+.cancel-btn {
+  @apply bg-app-hover hover:bg-app-light text-gray-300 px-4 py-2 rounded-lg;
+  @apply transition-colors;
+}
+
+/* Update existing task button styles */
+.task-toggle {
+  @apply px-4 py-1.5 rounded-lg text-sm font-medium transition-all;
+  @apply bg-primary text-white hover:bg-primary/90 flex items-center gap-2;
+}
+
+.task-toggle.active {
+  @apply bg-red-500 hover:bg-red-600;
+}
+
+/* Calendar styles */
+.calendar-section {
+  @apply rounded-xl shadow-sm max-w-5xl mx-auto overflow-hidden;
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-6;
+}
+
+.calendar-wrapper {
+  @apply bg-app-light rounded-xl shadow-md p-4;
+  @apply flex flex-col h-full;
+}
+
+.react-calendar {
+  @apply bg-transparent border-0 w-full;
+  @apply text-gray-100 font-medium;
+}
+
+.react-calendar__navigation {
+  @apply mb-4;
+}
+
+.react-calendar__navigation button {
+  @apply text-gray-100 text-lg font-medium;
+  @apply hover:bg-app-hover rounded-lg transition-colors min-w-[44px] p-2;
+}
+
+.react-calendar__navigation button:disabled {
+  @apply opacity-50 cursor-not-allowed bg-transparent;
+}
+
+.react-calendar__month-view__weekdays {
+  @apply text-gray-400 font-normal text-sm mb-2;
+}
+
+.react-calendar__month-view__days {
+  @apply gap-1;
+}
+
+.react-calendar__tile {
+  @apply rounded-lg text-sm p-2 relative;
+  @apply hover:bg-app-hover transition-colors;
+}
+
+.react-calendar__tile--active {
+  @apply bg-primary/20 text-primary;
+}
+
+.react-calendar__tile--now {
+  @apply bg-app-hover text-white;
+}
+
+.react-calendar__tile--hasContent {
+  @apply font-medium;
+}
+
+.react-calendar__tile--hasContent::after {
+  content: '';
+  @apply absolute bottom-1 left-1/2 -translate-x-1/2;
+  @apply w-1 h-1 rounded-full bg-primary;
+}
+
+.daily-details {
+  @apply bg-app-light rounded-xl p-6;
+  @apply flex flex-col h-full;
+}
+
+.daily-summary {
+  @apply bg-app-base rounded-lg p-4;
+}
+
+.summary-total {
+  @apply bg-app-hover rounded-lg p-4 mb-4;
+  @apply grid grid-cols-2 gap-4;
+}
+
+.task-stats-list {
+  @apply space-y-3 mt-4 overflow-y-auto max-h-[400px] pr-2;
+  @apply scrollbar-thin scrollbar-thumb-app-hover scrollbar-track-transparent;
+}
+
+/* Stats styles */
+.stats-chart-container {
+  @apply bg-app-light rounded-xl p-4;
+  height: fit-content;
+}
+
+.stats-list-container {
+  @apply bg-app-light rounded-xl p-4;
+  @apply flex flex-col gap-2;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.task-stats {
+  @apply space-y-4;
+}
+
+.stat-item {
+  @apply bg-app-base rounded-lg p-3 hover:bg-app-hover transition-all duration-200;
+}
+
+.task-masonry {
+  @apply grid gap-4;
+  /* Remove fixed columns, let grid decide based on content */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: min-content;
+}
+
+.task-card {
+  @apply bg-app-light rounded-xl shadow-sm transition-all duration-200;
+  @apply hover:shadow-lg hover:scale-[1.01];
+  /* Remove fixed height */
+  height: auto;
+  /* Allow content to determine size */
+  min-width: 0;
+  width: 100%;
+}
+
+.task-card-content {
+  @apply p-5 flex flex-col gap-4;
+  /* Let content determine height */
+  height: auto;
+}
+
+.task-card .task-title {
+  @apply text-lg font-semibold text-white;
+  /* Allow text to wrap naturally */
+  @apply break-words;
+  /* Remove any fixed width constraints */
+  width: 100%;
+}
+
+.task-card .task-description {
+  @apply text-sm text-gray-300;
+  /* Remove line clamping to show full text */
+  @apply whitespace-pre-wrap break-words;
+  /* Let text determine height */
+  height: auto;
+  width: 100%;
+}
+
+.task-footer {
+  @apply flex items-center justify-between mt-4 pt-4;
+  @apply border-t border-app-hover;
+  width: 100%;
+}
+
+/* Remove any existing task-card size classes */
+.task-card.has-description {
+  /* Remove fixed span */
+  grid-row-end: auto;
+}
+
+.task-masonry {
+  @apply grid gap-4;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: minmax(min-content, auto);
+}
+
+.task-card {
+  @apply bg-app-light/50 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-all;
+  @apply border border-app-border/50;
+}
+
+.task-card.has-description {
+  grid-row-end: span 2;
+}
+
+.task-card-content {
+  @apply p-4 flex flex-col gap-3;
+}
+
+.task-card-header {
+  @apply flex items-start justify-between gap-4;
+}
+
+.task-menu-btn {
+  @apply p-1.5 text-gray-400 hover:text-white rounded-lg hover:bg-app-hover transition-colors;
+  @apply flex items-center justify-center;
+}
+
+.task-menu {
+  @apply absolute right-0 top-full mt-1 bg-app-base rounded-lg shadow-lg;
+  @apply py-1 w-32 z-50;
+}
+
+.task-menu-item {
+  @apply w-full px-3 py-2 text-sm text-left text-gray-300;
+  @apply hover:bg-app-hover transition-colors flex items-center gap-2;
+}
+
+.task-card .task-title {
+  @apply text-lg font-medium text-white;
+}
+
+.task-card .task-description {
+  @apply text-sm text-gray-300;
+  @apply line-clamp-3;
+}
+
+.task-footer {
+  @apply flex items-center justify-between mt-auto pt-2;
+}
+
+.time-modal {
+  @apply fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4;
+}
+
+.time-modal-content {
+  @apply bg-app-base p-6 rounded-xl shadow-lg w-full max-w-md;
+  @apply border border-app-border/50 backdrop-blur-sm;
+  @apply transform transition-all duration-300;
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.btn-secondary {
+  @apply px-4 py-2 rounded-lg bg-app-hover text-gray-300;
+  @apply hover:bg-app-light transition-colors;
+}
+
+/* Add to existing styles */
+
+.draggable {
+  -webkit-app-region: drag;
+}
+
+.window-control {
+  -webkit-app-region: no-drag;
+}
